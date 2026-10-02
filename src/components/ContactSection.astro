@@ -1,0 +1,257 @@
+---
+import {
+  MessageCircle,
+  Phone,
+  MapPin,
+  Clock,
+  Send,
+  CheckCircle,
+  AlertCircle,
+  Navigation,
+} from "lucide-astro";
+import { contactData } from "../data/contact";
+
+const googleMapsLink = "https://maps.app.goo.gl/xWGJhxp767q3EUee8?g_st=ac";
+
+const defaultWaMsg = encodeURIComponent(
+  "Hola, quisiera recibir información sobre los servicios y talleres de NeuroAprendiendo.",
+);
+const waUrl1 = `https://wa.me/${contactData.phones[0].raw}?text=${defaultWaMsg}`;
+const waUrl2 = `https://wa.me/${contactData.phones[1].raw}?text=${defaultWaMsg}`;
+---
+
+<section id="contacto" class="scroll-mt-28 py-20 bg-white relative">
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16" data-reveal="up">
+      <span
+        class="inline-block px-4 py-1.5 rounded-full bg-orange-100 text-brand-orange font-extrabold text-xs uppercase tracking-wider mb-3"
+      >
+        UBICACIÓN Y CONTACTO DIRECTO
+      </span>
+      <h2
+        class="text-3xl sm:text-4xl font-extrabold text-brand-dark tracking-tight"
+      >
+        Estamos aquí para orientarte
+      </h2>
+      <p class="mt-4 text-slate-600 text-base sm:text-lg leading-relaxed">
+        Visítanos en nuestras instalaciones o conversemos sobre los servicios y
+        actividades de NeuroAprendiendo.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      <!-- Map Column (5 cols) -->
+      <div
+        class="lg:col-span-5 flex flex-col min-h-[500px] lg:min-h-full relative rounded-3xl overflow-hidden border border-brand-border shadow-xl group bg-slate-100"
+        data-reveal="left"
+      >
+        <!-- Imagen Estática del Mapa -->
+        <!-- REEMPLAZAR 'src' con la imagen cartográfica real obtenida -->
+        <img
+          src="/images/17.png"
+          alt="Mapa de ubicación de NeuroAprendiendo en Cajamarca"
+          class="absolute inset-0 w-full h-full object-cover"
+        />
+
+        <!-- Tarjeta flotante superpuesta -->
+        <div class="absolute bottom-6 left-6 right-6 z-20 pointer-events-none">
+          <div
+            class="bg-white/95 backdrop-blur-md p-5 rounded-2xl shadow-lg border border-slate-100 pointer-events-auto flex flex-col gap-4 transition-transform hover:-translate-y-1 duration-300"
+          >
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center shrink-0 shadow-inner"
+              >
+                <MapPin class="w-5 h-5 text-brand-orange" />
+              </div>
+              <div>
+                <h4
+                  class="font-extrabold text-brand-dark text-sm leading-tight mb-0.5"
+                >
+                  {contactData.name}
+                </h4>
+                <p
+                  class="text-xs text-slate-500 font-bold tracking-wide uppercase"
+                >
+                  {contactData.address}
+                </p>
+              </div>
+            </div>
+            <div
+              class="flex items-center justify-between pt-3 border-t border-slate-100/80"
+            >
+              <div
+                class="text-xs text-slate-600 font-medium flex flex-col gap-0.5"
+              >
+                <span class="flex items-center gap-1.5"
+                  ><Clock class="w-3.5 h-3.5 text-slate-400" /> {contactData.schedule}</span
+                >
+                <span class="flex items-center gap-1.5"
+                  ><Phone class="w-3.5 h-3.5 text-slate-400" />
+                  {contactData.phones[0].display} / {contactData.phones[1].display}</span
+                >
+              </div>
+              <a
+                href={googleMapsLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="px-4 py-2 bg-brand-orange hover:bg-orange-600 text-white text-xs font-bold rounded-xl transition-colors shadow-md shadow-brand-orange/20 flex items-center gap-1.5 shrink-0"
+              >
+                Cómo llegar
+                <Navigation class="w-3 h-3" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Column (7 cols) -->
+      <div class="lg:col-span-7" data-reveal="right">
+        <div
+          class="p-8 sm:p-10 rounded-3xl bg-white border border-brand-border shadow-xl"
+        >
+          <h3 class="text-2xl font-extrabold text-brand-dark mb-2">
+            Envíanos un mensaje
+          </h3>
+          <p class="text-xs text-slate-600 mb-8">
+            Completa el siguiente formulario y nos pondremos en contacto contigo
+            a la brevedad.
+          </p>
+
+          <form id="contact-form" class="space-y-5" novalidate>
+            <div class="grid grid-cols-1 sm:grid-cols-1 gap-5">
+              <div>
+                <label
+                  for="name"
+                  class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2"
+                >
+                  Nombre completo *
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  placeholder="Ej. María García"
+                  class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 text-sm font-medium transition-colors outline-none"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label
+                for="interest"
+                class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2"
+              >
+                Servicio o Taller de Interés
+              </label>
+              <select
+                id="interest"
+                name="interest"
+                class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 text-sm font-medium transition-colors outline-none bg-white"
+              >
+                <option value="Taller Adulto Mayor"
+                  >Talleres Integrales Adulto Mayor</option
+                >
+                <option value="Estimulacion Cognitiva"
+                  >Estimulación Cognitiva y Memoria</option
+                >
+                <option value="Desarrollo Infantil"
+                  >Aprendizaje y Desarrollo Infantil</option
+                >
+                <option value="Otro">Consulta General</option>
+              </select>
+            </div>
+
+            <div>
+              <label
+                for="message"
+                class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2"
+              >
+                Mensaje o Consulta *
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                required
+                placeholder="Escribe aquí tu consulta o solicitud de información..."
+                class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 text-sm font-medium transition-colors outline-none resize-none"
+              ></textarea>
+            </div>
+
+            <!-- Form Validation Status Alert -->
+            <div
+              id="form-status"
+              class="hidden p-4 rounded-xl text-xs font-bold"
+            >
+            </div>
+
+            <button
+              type="submit"
+              class="w-full py-4 rounded-xl bg-brand-orange hover:bg-brand-orange-hover text-white font-extrabold text-base transition-all shadow-lg shadow-brand-orange/25 flex items-center justify-center gap-2"
+            >
+              <Send class="w-5 h-5" />
+              <span>Enviar consulta vía WhatsApp</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById(
+    "contact-form",
+  ) as HTMLFormElement | null;
+  const statusDiv = document.getElementById("form-status");
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const nameInput = document.getElementById("name") as HTMLInputElement;
+    const interestInput = document.getElementById(
+      "interest",
+    ) as HTMLSelectElement;
+    const messageInput = document.getElementById(
+      "message",
+    ) as HTMLTextAreaElement;
+
+    const name = nameInput?.value.trim();
+    const interest = interestInput?.value;
+    const message = messageInput?.value.trim();
+
+    if (!name || !message) {
+      if (statusDiv) {
+        statusDiv.className =
+          "p-4 rounded-xl text-xs font-bold bg-rose-100 text-rose-800 border border-rose-300 block";
+        statusDiv.textContent =
+          "Por favor completa todos los campos obligatorios (*).";
+      }
+      return;
+    }
+
+    if (statusDiv) {
+      statusDiv.className =
+        "p-4 rounded-xl text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 block";
+      statusDiv.textContent =
+        "¡Gracias! Redirigiendo a WhatsApp con tu mensaje preparado...";
+    }
+
+    const compiledMsg = encodeURIComponent(
+      `Hola, mi nombre es ${name}. Estoy interesado en: ${interest}. Mensaje: ${message}`,
+    );
+    // Usando el primer número oficial de la configuración centralizada
+    const targetUrl = `https://wa.me/51970979116?text=${compiledMsg}`;
+
+    setTimeout(() => {
+      window.open(targetUrl, "_blank");
+      form.reset();
+      if (statusDiv) {
+        statusDiv.className = "hidden";
+      }
+    }, 1000);
+  });
+</script>

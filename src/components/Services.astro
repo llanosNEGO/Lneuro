@@ -1,0 +1,164 @@
+---
+import { Brain, Heart, Sun, Activity, Users, Palette, ArrowRight, MessageCircle } from 'lucide-astro';
+import { contactData } from '../data/contact';
+
+const services = [
+  {
+    id: "adulto-mayor-service",
+    icon: Sun,
+    title: "Talleres Integrales Adulto Mayor",
+    badge: "Programa Destacado",
+    badgeColor: "bg-amber-100 text-amber-900 border-amber-300",
+    description: "Programa diseñado para promover la participación activa, el movimiento corporal, la agilidad mental y la integración social en un espacio cálido y respetuoso.",
+    features: ["Lunes, miércoles y viernes", "Turnos tarde y noche", "Modalidad grupal participativa"],
+    accentBg: "bg-amber-500",
+    hoverBorder: "hover:border-amber-400",
+    linkHref: "#adulto-mayor",
+    ctaText: "Ver detalle del taller"
+  },
+  {
+    id: "estimulacion-cognitiva",
+    icon: Brain,
+    title: "Estimulación Cognitiva y Memoria",
+    badge: "Desarrollo Mental",
+    badgeColor: "bg-orange-100 text-orange-900 border-orange-300",
+    description: "Ejercicios y metodologías adaptadas para mantener la agilidad mental, fortalecer la concentración y ejercitar la memoria de forma entretenida y efectiva.",
+    features: ["Atención sostenida", "Razonamiento y lógica", "Técnicas de memoria"],
+    accentBg: "bg-brand-orange",
+    hoverBorder: "hover:border-brand-orange",
+    linkHref: "#contacto",
+    ctaText: "Consultar servicio"
+  },
+  {
+    id: "estimulacion-fisica",
+    icon: Activity,
+    title: "Movimiento y Memoria Sensorial",
+    badge: "Bienestar Físico",
+    badgeColor: "bg-emerald-100 text-emerald-900 border-emerald-300",
+    description: "Actividades de movilidad suave, coordinación motora y memoria sensorial que estimulan los sentidos y mantienen el cuerpo en constante actividad saludable.",
+    features: ["Coordinación motriz", "Estimulación de sentidos", "Ejercicios de equilibrio"],
+    accentBg: "bg-emerald-500",
+    hoverBorder: "hover:border-emerald-400",
+    linkHref: "#contacto",
+    ctaText: "Consultar servicio"
+  },
+  {
+    id: "socioemocional",
+    icon: Heart,
+    title: "Dinámica Socioemocional y Mindfulness",
+    badge: "Salud Emocional",
+    badgeColor: "bg-rose-100 text-rose-900 border-rose-300",
+    description: "Espacios de diálogo, relajación y conexión personal que reducen el estrés, fomentan la autoestima y mejoran el manejo de las emociones.",
+    features: ["Técnicas de relajación", "Espacio de escucha activa", "Fortalecimiento emocional"],
+    accentBg: "bg-rose-500",
+    hoverBorder: "hover:border-rose-400",
+    linkHref: "#contacto",
+    ctaText: "Consultar servicio"
+  },
+  {
+    id: "arte-manualidades",
+    icon: Palette,
+    title: "Manualidades y Expresión Artística",
+    badge: "Creatividad",
+    badgeColor: "bg-purple-100 text-purple-900 border-purple-300",
+    description: "Talleres prácticos de manualidades y arte que potencian la motricidad fina, estimulan la creatividad y fomentan la satisfacción del logro personal.",
+    features: ["Motricidad fina", "Proyectos creativos", "Socialización en grupo"],
+    accentBg: "bg-purple-500",
+    hoverBorder: "hover:border-purple-400",
+    linkHref: "#contacto",
+    ctaText: "Consultar servicio"
+  },
+  {
+    id: "acompanamiento-familiar",
+    icon: Users,
+    title: "Acompañamiento y Orientación",
+    badge: "Integral",
+    badgeColor: "bg-blue-100 text-blue-900 border-blue-300",
+    description: "Orientación cercana a familias para enriquecer la convivencia, entender las necesidades de cada etapa y acompañar los procesos de desarrollo.",
+    features: ["Guía a familiares", "Estrategias del hogar", "Atención personal"],
+    accentBg: "bg-blue-500",
+    hoverBorder: "hover:border-blue-400",
+    linkHref: "#contacto",
+    ctaText: "Consultar servicio"
+  }
+];
+---
+
+<section id="servicios" class="scroll-mt-28 py-20 bg-white relative overflow-hidden">
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16" data-reveal="up">
+      <span class="inline-block px-4 py-1.5 rounded-full bg-orange-100 text-brand-orange font-extrabold text-xs uppercase tracking-wider mb-3">
+        NUESTROS SERVICIOS Y ACTIVIDADES
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-dark tracking-tight">
+        Un acompañamiento pensado para cada etapa
+      </h2>
+      <p class="mt-4 text-slate-600 text-base sm:text-lg leading-relaxed">
+        Conoce las actividades y servicios que forman parte de nuestra propuesta de desarrollo integral.
+      </p>
+    </div>
+
+    <!-- Services Grid (Staggered Animation) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {services.map((s, idx) => {
+        const Icon = s.icon;
+        const msg = encodeURIComponent(`Hola, quisiera más información sobre el servicio de: ${s.title}`);
+        const serviceWaUrl = `https://wa.me/${contactData.phones[0].raw}?text=${msg}`;
+        const delay = (idx * 110).toString();
+
+        return (
+          <div 
+            data-reveal="up" 
+            data-reveal-delay={delay}
+            class={`group relative rounded-3xl bg-brand-cream/50 border border-brand-border p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${s.hoverBorder} flex flex-col justify-between`}
+          >
+            <div>
+              <!-- Top Header & Icon -->
+              <div class="flex items-center justify-between mb-6">
+                <div class={`w-14 h-14 rounded-2xl ${s.accentBg} text-white flex items-center justify-center shadow-md shadow-slate-300/50 group-hover:scale-110 transition-transform duration-300`}>
+                  <Icon class="w-7 h-7 stroke-[1.75]" />
+                </div>
+                <span class={`text-[11px] font-extrabold px-3 py-1 rounded-full border ${s.badgeColor}`}>
+                  {s.badge}
+                </span>
+              </div>
+
+              <!-- Title & Description -->
+              <h3 class="text-xl font-extrabold text-brand-dark mb-3 group-hover:text-brand-orange transition-colors">
+                {s.title}
+              </h3>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                {s.description}
+              </p>
+
+              <!-- Key Bullet Points -->
+              <ul class="space-y-2 mb-8 border-t border-slate-200/60 pt-4">
+                {s.features.map(f => (
+                  <li class="flex items-center gap-2 text-xs font-semibold text-slate-700">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-orange"></span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Footer Action -->
+            <div class="pt-4 border-t border-slate-200/60 flex items-center justify-between">
+              <a 
+                href={s.linkHref} 
+                class="inline-flex items-center gap-2 text-xs font-extrabold text-brand-dark hover:text-brand-orange transition-colors"
+              >
+                <span>{s.ctaText}</span>
+                <ArrowRight class="w-4 h-4 text-brand-orange" />
+              </a>
+
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+  </div>
+</section>

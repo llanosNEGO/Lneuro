@@ -1,0 +1,207 @@
+---
+import { X, Maximize2 } from 'lucide-astro';
+
+const photoAlbum = [
+  {
+    id: 1,
+    phrase: "Aprendemos jugando.",
+    imgSrc: "/images/1.jpg",
+    aspect: "h-[360px] sm:h-[420px]",
+    rotate: "hover:-rotate-1",
+    accentBg: "bg-amber-400"
+  },
+  {
+    id: 2,
+    phrase: "Creatividad en cada momento.",
+    imgSrc: "/images/2.jpg",
+    aspect: "h-[240px] sm:h-[280px]",
+    rotate: "hover:rotate-1",
+    accentBg: "bg-brand-orange"
+  },
+  {
+    id: 3,
+    phrase: "Compartimos, aprendemos y crecemos.",
+    imgSrc: "/images/3.jpg",
+    aspect: "h-[290px] sm:h-[330px]",
+    rotate: "hover:-rotate-1",
+    accentBg: "bg-emerald-400"
+  },
+  {
+    id: 4,
+    phrase: "Exploramos nuevas formas de aprender.",
+    imgSrc: "/images/4.jpg",
+    aspect: "h-[250px] sm:h-[290px]",
+    rotate: "hover:rotate-1",
+    accentBg: "bg-indigo-400"
+  },
+  {
+    id: 5,
+    phrase: "Cada logro merece una sonrisa.",
+    imgSrc: "/images/5.jpg",
+    aspect: "h-[340px] sm:h-[390px]",
+    rotate: "hover:-rotate-1",
+    accentBg: "bg-pink-400"
+  },
+  {
+    id: 6,
+    phrase: "Pequeños pasos, grandes logros.",
+    imgSrc: "/images/6.jpg",
+    aspect: "h-[260px] sm:h-[300px]",
+    rotate: "hover:rotate-1",
+    accentBg: "bg-purple-400"
+  },
+  {
+    id: 7,
+    phrase: "Creando recuerdos juntos.",
+    imgSrc: "/images/7.jpg",
+    aspect: "h-[310px] sm:h-[350px]",
+    rotate: "hover:-rotate-1",
+    accentBg: "bg-rose-400"
+  },
+  {
+    id: 8,
+    phrase: "Momentos que nos hacen crecer.",
+    imgSrc: "/images/8.jpg",
+    aspect: "h-[250px] sm:h-[280px]",
+    rotate: "hover:rotate-1",
+    accentBg: "bg-amber-500"
+  }
+];
+---
+
+<section id="galeria" class="scroll-mt-28 py-20 bg-brand-cream/60 relative overflow-hidden">
+  
+  <!-- Subtle Playful Sun Glow in background -->
+  <div class="absolute top-1/4 right-0 w-80 h-80 bg-amber-200/30 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-10 left-10 w-96 h-96 bg-orange-200/30 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative">
+    
+    <!-- Warm Friendly Header -->
+    <div class="text-center max-w-2xl mx-auto mb-14" data-reveal="up">
+      <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-amber-100 text-amber-950 font-extrabold text-xs uppercase tracking-wider mb-3 border border-amber-200 shadow-sm">
+        ☀️ UN POQUITO DE NUESTRO DÍA A DÍA
+      </span>
+      <h2 class="font-brand-display text-4xl sm:text-5xl font-extrabold text-brand-dark tracking-tight">
+        Así vivimos <span class="text-brand-orange">NeuroAprendiendo</span>
+      </h2>
+      <p class="mt-3 text-slate-700 text-base sm:text-lg font-medium">
+        Juegos, aprendizajes y pequeños momentos que compartimos cada día.
+      </p>
+    </div>
+
+    <!-- True Masonry Editorial Layout (Zero Holes / Zero Empty Spaces) -->
+    <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-5 space-y-5">
+      {photoAlbum.map((item, idx) => {
+        const delay = (idx * 80).toString();
+        return (
+          <div 
+            data-reveal="scale"
+            data-reveal-delay={delay}
+            class={`photo-card group relative rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer break-inside-avoid mb-5 border-2 border-white/90 bg-slate-900 ${item.aspect} ${item.rotate}`}
+            data-img={item.imgSrc}
+            data-phrase={item.phrase}
+          >
+            <!-- Real Photo -->
+            <img 
+              src={item.imgSrc} 
+              alt={item.phrase}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+
+            <!-- Soft Bottom Gradient for Text Contrast -->
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+
+            <!-- Zoom Icon Prompt -->
+            <div class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/90 backdrop-blur-md text-slate-800 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-md">
+              <Maximize2 class="w-4 h-4 text-brand-orange" />
+            </div>
+
+            <!-- Short Human Phrase (Bottom-Left Overlay) -->
+            <div class="absolute bottom-5 left-5 right-5 text-white">
+              <div class="inline-flex items-center gap-2">
+                <span class={`w-2.5 h-2.5 rounded-full ${item.accentBg}`}></span>
+                <p class="font-bold text-white text-base sm:text-lg tracking-wide drop-shadow-sm leading-snug">
+                  "{item.phrase}"
+                </p>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+  </div>
+
+  <!-- Accessible Fullscreen Lightbox Viewer -->
+  <div 
+    id="album-lightbox" 
+    class="fixed inset-0 z-50 hidden bg-slate-950/90 backdrop-blur-md flex flex-col items-center justify-center p-4 transition-all"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="lightbox-caption"
+  >
+    <button 
+      id="close-lightbox" 
+      type="button" 
+      class="absolute top-6 right-6 z-50 p-3 rounded-full bg-white/20 text-white hover:bg-white/40 transition-colors focus:outline-none"
+      aria-label="Cerrar imagen"
+    >
+      <X class="w-7 h-7" />
+    </button>
+
+    <div class="relative max-w-4xl max-h-[85vh] w-full flex flex-col items-center">
+      <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 max-h-[75vh]">
+        <img 
+          id="lightbox-img" 
+          src="/images/1.jpg" 
+          alt="Fotografía NeuroAprendiendo" 
+          class="w-full h-full object-contain max-h-[75vh]"
+        />
+      </div>
+      <p id="lightbox-caption" class="mt-4 font-bold text-white text-xl sm:text-2xl text-center italic drop-shadow-md">
+        "Aprendemos jugando."
+      </p>
+    </div>
+  </div>
+
+</section>
+
+<script>
+  const photoCards = document.querySelectorAll('.photo-card');
+  const lightbox = document.getElementById('album-lightbox');
+  const closeBtn = document.getElementById('close-lightbox');
+  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+  const lightboxCaption = document.getElementById('lightbox-caption');
+
+  photoCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const img = card.getAttribute('data-img') || '/images/1.jpg';
+      const phrase = card.getAttribute('data-phrase') || '';
+
+      if (lightboxImg) lightboxImg.src = img;
+      if (lightboxCaption) lightboxCaption.textContent = `"${phrase}"`;
+
+      lightbox?.classList.remove('hidden');
+    });
+  });
+
+  function closeAlbum() {
+    lightbox?.classList.add('hidden');
+  }
+
+  closeBtn?.addEventListener('click', closeAlbum);
+
+  lightbox?.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      closeAlbum();
+    }
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox && !lightbox.classList.contains('hidden')) {
+      closeAlbum();
+    }
+  });
+</script>

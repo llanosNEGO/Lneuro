@@ -1,0 +1,132 @@
+---
+import Logo from "./Logo.astro";
+import { MessageCircle, ArrowRight, Sun, MapPin } from "lucide-astro";
+import { contactData } from "../data/contact";
+
+const whatsappMsg = encodeURIComponent(
+  "Hola, quisiera recibir información sobre los servicios y talleres de NeuroAprendiendo.",
+);
+const whatsappUrl = `https://wa.me/${contactData.phones[0].raw}?text=${whatsappMsg}`;
+---
+
+<section
+  id="inicio"
+  class="scroll-mt-28 relative pt-8 pb-6 lg:pt-14 lg:pb-22 overflow-hidden bg-gradient-to-b from-brand-cream via-orange-50/30 to-brand-cream"
+>
+  <!-- Background Sun Glows -->
+  <div
+    class="absolute top-10 right-10 w-96 h-96 bg-amber-300/25 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse-soft"
+  >
+  </div>
+  <div
+    class="absolute top-1/3 -left-20 w-80 h-80 bg-brand-orange/15 rounded-full blur-3xl pointer-events-none -z-10"
+  >
+  </div>
+
+  <!-- Background Decorative Sun Rays Motif -->
+  <div
+    class="absolute top-4 right-8 lg:right-24 text-amber-300/30 pointer-events-none animate-spin-slow -z-10"
+  >
+    <Sun class="w-48 h-48 lg:w-72 lg:h-72 stroke-[1]" />
+  </div>
+
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <!-- Content Column (Asymmetric 7 cols) -->
+      <div class="lg:col-span-7 flex flex-col items-start text-left z-10">
+        <!-- Main Headline -->
+        <h1
+          data-reveal="up"
+          data-reveal-delay="80"
+          class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-dark tracking-tight leading-[1.12]"
+        >
+          Cada etapa de la vida merece <span
+            class="bg-gradient-to-r from-brand-orange via-amber-600 to-brand-orange bg-clip-text text-transparent"
+            >nuevas oportunidades</span
+          > para crecer.
+        </h1>
+
+        <!-- Subtitle & Official Tagline -->
+        <p
+          data-reveal="up"
+          data-reveal-delay="160"
+          class="mt-6 text-lg sm:text-xl text-slate-700 font-medium leading-relaxed max-w-2xl"
+        >
+          Un espacio de acompañamiento, aprendizaje y desarrollo integral para
+          niños, familias y adultos mayores.
+        </p>
+
+        <!-- Official Tagline Box -->
+        <div
+          data-reveal="up"
+          data-reveal-delay="240"
+          class="mt-5 p-4 rounded-2xl bg-white/90 border border-amber-200/90 shadow-sm flex items-center gap-3"
+        >
+          <div
+            class="p-2 rounded-xl bg-amber-100 text-brand-orange font-bold text-xl"
+          >
+            ☀️
+          </div>
+          <p class="text-sm sm:text-base font-bold text-slate-800 italic">
+            "Juntos por el desarrollo mental, para un mejor mañana."
+          </p>
+        </div>
+
+        <!-- Action CTAs -->
+        <div
+          data-reveal="up"
+          data-reveal-delay="320"
+          class="mt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto"
+        >
+          <!-- Button smooth scrolling to #contacto section at the bottom of the page -->
+          <a
+            href="#contacto"
+            class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-base transition-all duration-200 shadow-xl shadow-emerald-600/25 hover:shadow-emerald-600/40 hover:-translate-y-1 group"
+          >
+            <MapPin class="w-5 h-5 text-white" />
+            <span>Solicitar Información</span>
+          </a>
+
+          <a
+            href="#servicios"
+            class="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl bg-white border-2 border-brand-orange/30 hover:border-brand-orange text-brand-dark hover:text-brand-orange font-bold text-base transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 group"
+          >
+            <span>Conoce nuestros servicios</span>
+            <ArrowRight
+              class="w-5 h-5 text-brand-orange group-hover:translate-x-1 transition-transform"
+            />
+          </a>
+        </div>
+      </div>
+
+      <!-- Hero Visual Column Showcase Image 15.jpg (Asymmetric 5 cols) -->
+      <div
+        class="lg:col-span-5 relative"
+        data-reveal="right"
+        data-reveal-delay="200"
+      >
+        <div class="relative mx-auto max-w-md lg:max-w-none">
+          <!-- Outer Decorative Mask Box -->
+          <div
+            class="relative rounded-3xl p-3 bg-gradient-to-tr from-brand-orange via-amber-400 to-brand-yellow shadow-2xl shadow-brand-orange/25 rotate-1"
+          >
+            <div
+              class="rounded-2xl overflow-hidden relative bg-slate-900 group"
+            >
+              <img
+                src="/images/15.jpg"
+                alt="Instalaciones y actividades en Centro Psicológico Integral NeuroAprendiendo"
+                class="w-full h-[420px] sm:h-[480px] object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <!-- Subtle Dark Gradient Overlay for Badges & Contrast -->
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/20"
+              >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,235 @@
+---
+import Logo from "./Logo.astro";
+import {
+  Phone,
+  MapPin,
+  Mail,
+  Clock,
+  Facebook,
+  Instagram,
+  MessageCircle,
+  Heart,
+  ArrowUp,
+} from "lucide-astro";
+import { contactData } from "../data/contact";
+
+// Custom TikTok icon since it might not be in older lucide sets
+const TikTokIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>`;
+---
+
+<footer
+  class="bg-brand-dark text-white border-t border-slate-800 pt-16 pb-6 relative"
+>
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 pb-12 border-b border-slate-800/80"
+    >
+      <!-- Bloque 1: Identidad Institucional -->
+      <div class="space-y-5">
+        <Logo size="sm" showFootprints={true} />
+        <h3 class="font-extrabold text-sm text-white tracking-wide">
+          {contactData.name}
+        </h3>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          Un espacio de acompañamiento, aprendizaje y desarrollo integral para
+          niños, familias y adultos mayores.
+        </p>
+        <p class="text-xs font-bold text-amber-400 italic">
+          "{contactData.slogan}"
+        </p>
+      </div>
+
+      <!-- Bloque 2: Navegación -->
+      <div>
+        <h4
+          class="text-sm font-extrabold text-white uppercase tracking-wider mb-5 flex items-center gap-2"
+        >
+          <span class="w-2 h-2 rounded-full bg-brand-orange"></span>
+          Navegación
+        </h4>
+        <ul class="space-y-3 text-xs text-slate-300 font-medium">
+          <li>
+            <a
+              href="#inicio"
+              class="hover:text-brand-orange hover:translate-x-1 inline-block transition-all duration-300"
+              >Inicio</a>
+          </li>
+          <li>
+            <a
+              href="#servicios"
+              class="hover:text-brand-orange hover:translate-x-1 inline-block transition-all duration-300"
+              >Servicios integrales</a>
+          </li>
+          <li>
+            <a
+              href="#adulto-mayor"
+              class="hover:text-brand-orange hover:translate-x-1 inline-block transition-all duration-300"
+              >Talleres para adultos mayores</a>
+          </li>
+          <li>
+            <a
+              href="#nosotros"
+              class="hover:text-brand-orange hover:translate-x-1 inline-block transition-all duration-300"
+              >Nuestra filosofía</a>
+          </li>
+          <li>
+            <a
+              href="#galeria"
+              class="hover:text-brand-orange hover:translate-x-1 inline-block transition-all duration-300"
+              >Instalaciones y actividades</a>
+          </li>
+          <li>
+            <a
+              href="#contacto"
+              class="hover:text-brand-orange hover:translate-x-1 inline-block transition-all duration-300"
+              >Contacto y ubicación</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Bloque 3: Actividades -->
+      <div>
+        <h4
+          class="text-sm font-extrabold text-white uppercase tracking-wider mb-5 flex items-center gap-2"
+        >
+          <span class="w-2 h-2 rounded-full bg-brand-lemon"></span>
+          Actividades
+        </h4>
+        <ul class="space-y-3 text-xs text-slate-300">
+          <li class="flex items-center gap-2">
+            <span class="w-1 h-1 rounded-full bg-slate-600"></span> Estimulación cognitiva
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="w-1 h-1 rounded-full bg-slate-600"></span> Estimulación física
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="w-1 h-1 rounded-full bg-slate-600"></span> Memoria sensorial
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="w-1 h-1 rounded-full bg-slate-600"></span> Dinámica socioemocional
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="w-1 h-1 rounded-full bg-slate-600"></span> Manualidades y
+            arte
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="w-1 h-1 rounded-full bg-slate-600"></span> Mindfulness
+          </li>
+        </ul>
+      </div>
+
+      <!-- Bloque 4: Contacto y redes sociales -->
+      <div class="space-y-6">
+        <div>
+          <h4
+            class="text-sm font-extrabold text-white uppercase tracking-wider mb-5 flex items-center gap-2"
+          >
+            <span class="w-2 h-2 rounded-full bg-brand-purple"></span>
+            Atención
+          </h4>
+          <ul class="space-y-3.5 text-xs text-slate-300">
+            <li class="flex items-start gap-3">
+              <MapPin class="w-4 h-4 text-brand-orange shrink-0 mt-0.5" />
+              <span>{contactData.address}</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <Phone class="w-4 h-4 text-brand-orange shrink-0" />
+              <div class="flex flex-wrap gap-x-2">
+                <a
+                  href={`tel:+${contactData.phones[0].raw}`}
+                  class="hover:text-white transition-colors"
+                  >{contactData.phones[0].display}</a
+                >
+                <span class="text-slate-600">/</span>
+                <a
+                  href={`tel:+${contactData.phones[1].raw}`}
+                  class="hover:text-white transition-colors"
+                  >{contactData.phones[1].display}</a
+                >
+              </div>
+            </li>
+            <li class="flex items-center gap-3">
+              <Mail class="w-4 h-4 text-brand-orange shrink-0" />
+              <a
+                href={`mailto:${contactData.email}`}
+                class="hover:text-white transition-colors"
+                >{contactData.email}</a
+              >
+            </li>
+            <li class="flex items-center gap-3">
+              <Clock class="w-4 h-4 text-emerald-400 shrink-0" />
+              <span>{contactData.schedule}</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Social Icons -->
+        <div class="pt-2 flex items-center gap-3">
+          <a
+            href={contactData.socials.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook de NeuroAprendiendo"
+            class="w-10 h-10 rounded-xl bg-slate-800/80 hover:bg-brand-orange text-slate-300 hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-brand-orange"
+          >
+            <Facebook class="w-4 h-4" />
+          </a>
+          <a
+            href={contactData.socials.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram de NeuroAprendiendo"
+            class="w-10 h-10 rounded-xl bg-slate-800/80 hover:bg-brand-orange text-slate-300 hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-brand-orange"
+          >
+            <Instagram class="w-4 h-4" />
+          </a>
+          <a
+            href={contactData.socials.tiktok}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="TikTok de NeuroAprendiendo"
+            class="w-10 h-10 rounded-xl bg-slate-800/80 hover:bg-brand-orange text-slate-300 hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-brand-orange"
+            set:html={TikTokIcon}
+          />
+          <a
+            href={`https://wa.me/${contactData.phones[0].raw}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Escríbenos por WhatsApp"
+            class="w-10 h-10 rounded-xl bg-slate-800/80 hover:bg-emerald-500 text-slate-300 hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+          >
+            <MessageCircle class="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Franja Inferior -->
+    <div
+      class="pt-6 flex flex-col md:flex-row items-center justify-between text-xs text-slate-400 gap-4"
+    >
+      <div
+        class="flex flex-col sm:flex-row items-center sm:gap-1 text-center md:text-left"
+      >
+        <span>© {new Date().getFullYear()} {contactData.name}.</span>
+        <span class="hidden sm:inline">|</span>
+        <span>Todos los derechos reservados.</span>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <p class="flex items-center gap-1.5 opacity-70">
+          <span>Desarrollado con</span>
+          <Heart class="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
+          <span>para un mejor mañana</span>
+        </p>
+        <a
+          href="#inicio"
+          aria-label="Volver al inicio"
+          class="w-8 h-8 rounded-full bg-slate-800 hover:bg-brand-orange text-white flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-brand-orange"
+        >
+          <ArrowUp class="w-4 h-4" />
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

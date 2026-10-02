@@ -1,0 +1,93 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { 
+	title = "NeuroAprendiendo | Centro Psicológico Integral",
+	description = "Un espacio de acompañamiento, aprendizaje y desarrollo integral para niños, familias y adultos mayores. Juntos por el desarrollo mental, para un mejor mañana."
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<title>{title}</title>
+		
+		<!-- Open Graph / Social Meta Tags -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:site_name" content="NeuroAprendiendo" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	</head>
+	<body class="bg-brand-cream text-brand-dark font-sans antialiased min-h-screen selection:bg-brand-orange selection:text-white">
+		<slot />
+
+		<!-- Global Scroll Reveal Engine Script -->
+		<script>
+			// Activate reveal CSS rules when JS is present
+			document.documentElement.classList.add('reveal-enabled');
+
+			const initRevealEngine = () => {
+				// Respect prefers-reduced-motion
+				if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+					document.querySelectorAll('[data-reveal]').forEach((el) => {
+						el.classList.add('is-revealed');
+					});
+					return;
+				}
+
+				const observerOptions: IntersectionObserverInit = {
+					root: null,
+					rootMargin: '0px 0px -40px 0px',
+					threshold: 0.12
+				};
+
+				const observer = new IntersectionObserver((entries, obs) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							const target = entry.target as HTMLElement;
+							const delayAttr = target.getAttribute('data-reveal-delay');
+
+							if (delayAttr) {
+								const delay = parseInt(delayAttr, 10);
+								setTimeout(() => {
+									target.classList.add('is-revealed');
+								}, delay);
+							} else {
+								target.classList.add('is-revealed');
+							}
+
+							obs.unobserve(target);
+						}
+					});
+				}, observerOptions);
+
+				document.querySelectorAll('[data-reveal]').forEach((el) => {
+					observer.observe(el);
+				});
+			};
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', initRevealEngine);
+			} else {
+				initRevealEngine();
+			}
+		</script>
+	</body>
+</html>

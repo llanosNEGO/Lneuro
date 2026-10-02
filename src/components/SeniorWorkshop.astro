@@ -1,0 +1,122 @@
+---
+import {
+  Sun,
+  Calendar,
+  Clock,
+  MapPin,
+  Phone,
+  MessageCircle,
+  CheckCircle2,
+  Sparkles,
+  Brain,
+  Heart,
+  Activity,
+  Palette,
+  Smile,
+} from "lucide-astro";
+import { contactData } from "../data/contact";
+
+const whatsappMsg = encodeURIComponent(
+  `Hola, quisiera consultar sobre los Talleres Integrales para el Adulto Mayor en ${contactData.address}.`,
+);
+const whatsappUrl = `https://wa.me/${contactData.phones[0].raw}?text=${whatsappMsg}`;
+
+const activities = [
+  {
+    icon: Brain,
+    title: "Estimulación cognitiva",
+    desc: "Ejercicios orientados a mantener la agilidad mental, la memoria y la atención.",
+  },
+  {
+    icon: Activity,
+    title: "Estimulación física",
+    desc: "Movimiento corporal adaptado para activar la vitalidad y la flexibilidad.",
+  },
+  {
+    icon: Sparkles,
+    title: "Memoria sensorial",
+    desc: "Experiencias de estimulación a través de los sentidos para reconectar vivencias.",
+  },
+  {
+    icon: Heart,
+    title: "Dinámica socioemocional",
+    desc: "Espacios de integración grupal para compartir, conversar y estrechar lazos.",
+  },
+  {
+    icon: Palette,
+    title: "Manualidades y arte",
+    desc: "Talleres creativos que potencian la motricidad fina y la expresión personal.",
+  },
+  {
+    icon: Smile,
+    title: "Mindfulness",
+    desc: "Técnicas sencillas de respiración y presencia plena para el descanso y la paz mental.",
+  },
+];
+---
+
+<section
+  id="adulto-mayor"
+  class="scroll-mt-28 py-14 bg-gradient-to-b from-amber-500/10 via-amber-100/40 to-brand-cream relative overflow-hidden"
+>
+  <!-- Decorative background elements -->
+  <div
+    class="absolute top-0 right-0 w-96 h-96 bg-amber-200/40 rounded-full blur-3xl pointer-events-none"
+  >
+  </div>
+  <div
+    class="absolute bottom-0 left-0 w-80 h-80 bg-orange-200/40 rounded-full blur-3xl pointer-events-none"
+  >
+  </div>
+
+  <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <!-- Header Badge & Title -->
+    <div class="text-center max-w-3xl mx-auto mb-16" data-reveal="up">
+      <div
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-200/80 text-amber-900 font-extrabold text-xs uppercase tracking-wider mb-4 shadow-sm border border-amber-300"
+      >
+        <Sun class="w-4 h-4 text-brand-orange animate-spin-slow" />
+        SECCIÓN ESPECIAL ADULTO MAYOR
+      </div>
+      <h2
+        class="text-3xl sm:text-5xl font-extrabold text-brand-dark tracking-tight"
+      >
+        Bienestar y movimiento en cada etapa de la vida
+      </h2>
+      <p
+        class="mt-4 text-slate-700 text-base sm:text-lg font-medium leading-relaxed"
+      >
+        Actividades orientadas a promover la participación, el movimiento, la
+        estimulación cognitiva y el bienestar socioemocional en un entorno
+        grupal cálido.
+      </p>
+    </div>
+
+    <!-- Activities Grid (6 items staggered) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+      {
+        activities.map((act, idx) => {
+          const Icon = act.icon;
+          const delay = (idx * 100).toString();
+          return (
+            <div
+              data-reveal="up"
+              data-reveal-delay={delay}
+              class="p-6 rounded-2xl bg-white/90 border border-amber-200/80 shadow-sm hover:shadow-md transition-all duration-300 flex items-start gap-4 group"
+            >
+              <div class="w-12 h-12 rounded-xl bg-amber-100 text-brand-orange flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-brand-orange group-hover:text-white transition-all">
+                <Icon class="w-6 h-6 stroke-[2]" />
+              </div>
+              <div>
+                <h3 class="text-lg font-extrabold text-brand-dark mb-1 group-hover:text-brand-orange transition-colors">
+                  {act.title}
+                </h3>
+                <p class="text-xs text-slate-600 leading-relaxed">{act.desc}</p>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

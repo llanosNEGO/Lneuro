@@ -1,0 +1,26 @@
+---
+import { MessageCircle } from 'lucide-astro';
+import { contactData } from '../data/contact';
+
+const defaultWaMsg = encodeURIComponent("Hola, quisiera recibir información sobre los servicios y talleres de NeuroAprendiendo.");
+const waUrl = `https://wa.me/${contactData.phones[0].raw}?text=${defaultWaMsg}`;
+---
+
+<div class="fixed bottom-6 right-6 z-50 group">
+  <!-- Tooltip preview on hover -->
+  <div class="absolute bottom-16 right-0 w-64 p-3 rounded-2xl bg-white text-slate-800 text-xs shadow-2xl border border-slate-200 opacity-0 group-hover:opacity-100 transition-all pointer-events-none transform group-hover:-translate-y-1">
+    <p class="font-extrabold text-brand-dark mb-0.5">¿Tienes alguna pregunta?</p>
+    <p class="text-slate-600">¡Escríbenos por WhatsApp y te responderemos de inmediato!</p>
+  </div>
+
+  <a 
+    href={waUrl} 
+    target="_blank" 
+    rel="noopener noreferrer"
+    class="relative w-14 h-14 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center shadow-2xl shadow-emerald-600/40 hover:scale-110 transition-all duration-300 animate-pulse-soft"
+    aria-label="Contactar por WhatsApp"
+  >
+    <MessageCircle class="w-7 h-7" />
+    <span class="absolute top-0 right-0 w-3.5 h-3.5 rounded-full bg-amber-400 border-2 border-white"></span>
+  </a>
+</div>

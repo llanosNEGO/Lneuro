@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import SeniorWorkshop from '../components/SeniorWorkshop.astro';
+import HumanSection from '../components/HumanSection.astro';
+import Gallery from '../components/Gallery.astro';
+import ContactSection from '../components/ContactSection.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFloating from '../components/WhatsAppFloating.astro';
+import { contactData } from '../data/contact';
+---
+
+<Layout 
+	title={`${contactData.name} | Psicología y Acompañamiento`}
+	description={`${contactData.name} en ${contactData.address}. Acompañamiento, aprendizaje y talleres de estimulación para niños, familias y adultos mayores.`}
+>
+	<Header />
+	<main id="main-content">
+		<Hero />
+		<Services />
+		<SeniorWorkshop />
+		<HumanSection />
+		<Gallery />
+		<ContactSection />
+	</main>
+	<Footer />
+	<WhatsAppFloating />
+</Layout>
